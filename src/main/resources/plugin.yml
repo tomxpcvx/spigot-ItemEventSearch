@@ -1,0 +1,6 @@
+name: ItemEventSearch
+version: 1.0
+description: ItemEventSearch
+author: tomxpcvx
+
+main: wtf.tomxpcvx.itemeventsearch.ItemEventSearch

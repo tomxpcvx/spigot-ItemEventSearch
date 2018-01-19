@@ -77,8 +77,8 @@ public class EventItem implements ConfigurationSerializable {
 
     public void itemPickupSequenz(ItemEventPlayer iep) {
         Location playerLocation = iep.getPlayer().getLocation();
-        EffectUtil.playEffect(playerLocation, Effect.MOBSPAWNER_FLAMES);
-        iep.getPlayer().playSound(playerLocation, Sound.ENTITY_PLAYER_BURP, 10.0F, 1.0F);
+        EffectUtil.playEffect(playerLocation, Effect.valueOf(Constants.msg.get("PickupEffect")));
+        iep.getPlayer().playSound(playerLocation, Sound.valueOf(Constants.msg.get("PickupSound")), 10.0F, 1.0F);
 
         String eventItemPickup1 = Constants.replace(Constants.msg.get("EventItemPickUp1"), "@NR", String.valueOf(iep.getLocatedEventItemCount()));
         String eventItemPickup2 = Constants.replace(Constants.msg.get("EventItemPickUp2"), "@NR", String.valueOf(iep.getLocatedEventItemCount()));

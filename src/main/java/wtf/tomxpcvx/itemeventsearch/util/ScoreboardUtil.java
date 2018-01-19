@@ -20,9 +20,9 @@ public class ScoreboardUtil {
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         objective.setDisplayName(Constants.msg.get("Scoreboard.Title"));
 
-        Score map = objective.getScore(Bukkit.getOfflinePlayer(Constants.msg.get("Scoreboard.EventItemFind")));
+        Score map = objective.getScore(Constants.msg.get("Scoreboard.EventItemFind"));
         map.setScore(iep.getLocatedEventItemCount());
-        Score cookies = objective.getScore(Bukkit.getOfflinePlayer(Constants.msg.get("Scoreboard.EventItemExist")));
+        Score cookies = objective.getScore(Constants.msg.get("Scoreboard.EventItemExist"));
         cookies.setScore(Constants.eventItemCount);
 
         iep.setScoreboard(board);
@@ -47,12 +47,13 @@ public class ScoreboardUtil {
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         objective.setDisplayName(Constants.msg.get("Scoreboard.Title"));
 
-        board.resetScores(Bukkit.getOfflinePlayer(Constants.msg.get("Scoreboard.EventItemFind")));
-        Score s = objective.getScore(Bukkit.getOfflinePlayer(Constants.msg.get("Scoreboard.EventItemFind")));
 
-        if (objective.getScore(Bukkit.getOfflinePlayer(Constants.msg.get("Scoreboard.EventItemExist"))).getScore() != Constants.eventItemCount) {
-            board.resetScores(Bukkit.getOfflinePlayer(Constants.msg.get("Scoreboard.EventItemExist")));
-            Score hidden = objective.getScore(Bukkit.getOfflinePlayer(Constants.msg.get("Scoreboard.EventItemExist")));
+        board.resetScores(Constants.msg.get("Scoreboard.EventItemFind"));
+        Score s = objective.getScore(Constants.msg.get("Scoreboard.EventItemFind"));
+
+        if (objective.getScore(Constants.msg.get("Scoreboard.EventItemExist")).getScore() != Constants.eventItemCount) {
+            board.resetScores(Constants.msg.get("Scoreboard.EventItemExist"));
+            Score hidden = objective.getScore(Constants.msg.get("Scoreboard.EventItemExist"));
             hidden.setScore(Constants.eventItemCount);
         }
         s.setScore(iep.getLocatedEventItemCount());

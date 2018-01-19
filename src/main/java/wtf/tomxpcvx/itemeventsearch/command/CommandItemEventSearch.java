@@ -13,6 +13,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.List;
+
 public class CommandItemEventSearch implements CommandListener {
 
     @CommandHandler("itemeventsearch.command.give")
@@ -54,6 +56,18 @@ public class CommandItemEventSearch implements CommandListener {
             ItemEventSearch.getPlugin().getConfig().set("ItemEventSearch.Prize", prize);
             ItemEventSearch.getPlugin().saveConfig();
             player.sendMessage(Constants.pluginDisplayName + Constants.replace(Constants.msg.get("CommandPrizeSet"), "@MONEY", String.valueOf(prize)));
+        }
+    }
+
+    @CommandHandler("itemeventsearch.command.winners")
+    public void onWinnersCommand(BukkitCommandContext ctxt) {
+        if(ctxt.getSender().isPlayer()) {
+            Player player = (Player) ctxt.getSender().getSender();
+            List<String> playerNames = (List<String>) ItemEventSearch.getPlugin().getConfig().getList("ItemEventSearch.Winners");
+            player.sendMessage(Constants.pluginDisplayName + Constants.msg.get("CommandWinners"));
+            for(String playerName : playerNames) {
+                player.sendMessage(Constants.msg.get("CommandWinnersPrefixPlayerNames") + playerName);
+            }
         }
     }
 

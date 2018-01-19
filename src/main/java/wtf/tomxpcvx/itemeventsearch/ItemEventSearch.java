@@ -64,6 +64,7 @@ public class ItemEventSearch extends JavaPlugin {
         Constants.eventItemMaterial = Material.getMaterial(getConfig().get("ItemEventSearch.EventItemMaterial").toString());
         Constants.eventItemName = getConfig().getString("ItemEventSearch.EventItemName");
         Constants.prize = getConfig().getDouble("ItemEventSearch.Prize");
+        Constants.pluginDisplayName = getConfig().getString("ItemEventSearch.PluginDisplayName");
 
         matchConfig = new Config().getConfig("items", false);
 
@@ -105,6 +106,8 @@ public class ItemEventSearch extends JavaPlugin {
         pluginUtil.registerMessage("CommandGiveWrongWorld", pluginUtil.translateColorCodes(getConfig().getString("ItemEventSearch.Message.CommandGiveWrongWorld")));
         pluginUtil.registerMessage("CommandWorldSet", pluginUtil.translateColorCodes(getConfig().getString("ItemEventSearch.Message.CommandWorldSet")));
         pluginUtil.registerMessage("CommandPrizeSet", pluginUtil.translateColorCodes(getConfig().getString("ItemEventSearch.Message.CommandPrizeSet")));
+        pluginUtil.registerMessage("CommandWinners", pluginUtil.translateColorCodes(getConfig().getString("ItemEventSearch.Message.CommandWinners")));
+        pluginUtil.registerMessage("CommandWinnersPrefixPlayerNames", pluginUtil.translateColorCodes(getConfig().getString("ItemEventSearch.Message.CommandWinnersPrefixPlayerNames")));
         pluginUtil.registerMessage("CommandRemoveEnabled", pluginUtil.translateColorCodes(getConfig().getString("ItemEventSearch.Message.CommandRemoveEnabled")));
         pluginUtil.registerMessage("CommandRemoveDisabled", pluginUtil.translateColorCodes(getConfig().getString("ItemEventSearch.Message.CommandRemoveDisabled")));
         pluginUtil.registerMessage("CommandNotFound", pluginUtil.translateColorCodes(getConfig().getString("ItemEventSearch.Message.CommandNotFound")));
@@ -123,6 +126,7 @@ public class ItemEventSearch extends JavaPlugin {
         pluginUtil.registerMessage("Win", pluginUtil.translateColorCodes(getConfig().getString("ItemEventSearch.Message.Win")));
         pluginUtil.registerMessage("WinMoney", pluginUtil.translateColorCodes(getConfig().getString("ItemEventSearch.Message.WinMoney")));
         pluginUtil.registerMessage("Prize", pluginUtil.translateColorCodes(getConfig().getString("ItemEventSearch.Prize")));
+        pluginUtil.registerMessage("PluginDisplayName", pluginUtil.translateColorCodes(getConfig().getString("ItemEventSearch.PluginDisplayName")));
 
 
     }
@@ -170,6 +174,10 @@ public class ItemEventSearch extends JavaPlugin {
                                 .description("Set the winning prize")
                                 .executes("itemeventsearch.command.prize"))
                                 .permission("itemeventsearch.admin"))
+                .then(new Literal("winners", "w")
+                                .description("Get a list of all winners")
+                                .executes("itemeventsearch.command.winners")
+                                .permission("itemeventsearch.admin"))
                 .then(new Literal("remove", "r", "rm")
                         .then(new Argument("state", new BooleanType(new String[]{"true", "on", "yes", "enabled", "wahr", "ja", "aktiviert", "an"}, new String[]{"false", "off", "no", "disabled", "falsch", "nein", "deaktiviert", "aus"}))
                                 .description("Set the remove mode")
@@ -193,17 +201,21 @@ public class ItemEventSearch extends JavaPlugin {
 
     private void loadConfig() {
         getConfig().addDefault("ItemEventSearch.World", "world");
-        getConfig().addDefault("ItemEventSearch.EventItemName", "Keks");
+        getConfig().addDefault("ItemEventSearch.PluginDisplayName", "§3§o§lItemEventSearch>§b  ");
+        getConfig().addDefault("ItemEventSearch.EventItemName", "EventItem");
         getConfig().addDefault("ItemEventSearch.EventItemMaterial", Material.COOKIE.toString());
         getConfig().addDefault("ItemEventSearch.EventItemCount", 0);
         getConfig().addDefault("ItemEventSearch.Prize", 5000.0);
-        getConfig().addDefault("ItemEventSearch.Scoreboard.Title", "&3&o&lKeks-Counter");
+        getConfig().addDefault("ItemEventSearch.Winners", new ArrayList<String>());
+        getConfig().addDefault("ItemEventSearch.Scoreboard.Title", "&3&o&lEventItem-Counter");
         getConfig().addDefault("ItemEventSearch.Scoreboard.EventItemFind", "&b&oGefundene:");
         getConfig().addDefault("ItemEventSearch.Scoreboard.EventItemExist", "&b&oVersteckte:");
         getConfig().addDefault("ItemEventSearch.Message.CommandGiveEventItem", "Du hast 64 Event-Items erhalten.");
         getConfig().addDefault("ItemEventSearch.Message.CommandGiveWrongWorld", "In dieser Welt kannst du diesen Befehl nicht nutzen.");
         getConfig().addDefault("ItemEventSearch.Message.CommandWorldSet", "Du hast die Event-Welt auf &c@WORLD &fgesetzt.");
         getConfig().addDefault("ItemEventSearch.Message.CommandPrizeSet", "Du hast die Event-Belohnung auf &c@MONEY &fgesetzt.");
+        getConfig().addDefault("ItemEventSearch.Message.CommandWinners", "Folgende Spieler haben alle EventItems gefunden:");
+        getConfig().addDefault("ItemEventSearch.Message.CommandWinnersPrefixPlayerNames", "§b - ");
         getConfig().addDefault("ItemEventSearch.Message.CommandRemoveEnabled", "Du kannst nun Event-Items entfernen.");
         getConfig().addDefault("ItemEventSearch.Message.CommandRemoveDisabled", "Du kannst nun keine Event-Items mehr entfernen.");
         getConfig().addDefault("ItemEventSearch.Message.CommandNotFound", "Dieses Kommando existiert nicht.");

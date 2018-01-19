@@ -1,6 +1,7 @@
 package wtf.tomxpcvx.itemeventsearch.util;
 
 import wtf.tomxpcvx.itemeventsearch.Constants;
+import wtf.tomxpcvx.itemeventsearch.ItemEventSearch;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Scoreboard;
 
@@ -106,8 +107,17 @@ public class ItemEventPlayer {
         if(pluginUtil.econ != null) {
             pluginUtil.econ.depositPlayer(this.getPlayer().getName(), Constants.prize);
             this.getPlayer().sendMessage(Constants.pluginDisplayName + Constants.replace(Constants.msg.get("WinMoney"), "@money", String.valueOf(Constants.prize)));
+            this.addItemEventPlayerToWinners();
         } else {
             this.getPlayer().sendMessage(Constants.pluginDisplayName + Constants.msg.get("Win"));
+            this.addItemEventPlayerToWinners();
         }
+    }
+
+    public void addItemEventPlayerToWinners() {
+        List<String> winners = (List<String>) ItemEventSearch.getPlugin().getConfig().get("ItemEventSearch.Winners");
+        winners.add(this.getPlayer().getName());
+        ItemEventSearch.getPlugin().getConfig().set("ItemEventSearch.Winners", winners);
+        ItemEventSearch.getPlugin().saveConfig();
     }
 }

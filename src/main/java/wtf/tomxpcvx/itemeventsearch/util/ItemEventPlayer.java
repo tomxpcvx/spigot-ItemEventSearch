@@ -2,6 +2,8 @@ package wtf.tomxpcvx.itemeventsearch.util;
 
 import wtf.tomxpcvx.itemeventsearch.Constants;
 import wtf.tomxpcvx.itemeventsearch.ItemEventSearch;
+import org.bukkit.Effect;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Scoreboard;
 
@@ -99,8 +101,11 @@ public class ItemEventPlayer {
         for (int i=0; i < playerName.length(); i++) {
             strings.add(playerName.substring(i, Math.min(i + length, playerName.length())));
         }
+        
         return strings.get(0);
     }
+
+
 
     public void setWin() {
         PluginUtil pluginUtil = new PluginUtil();
@@ -116,8 +121,10 @@ public class ItemEventPlayer {
 
     public void addItemEventPlayerToWinners() {
         List<String> winners = (List<String>) ItemEventSearch.getPlugin().getConfig().get("ItemEventSearch.Winners");
-        winners.add(this.getPlayer().getName());
-        ItemEventSearch.getPlugin().getConfig().set("ItemEventSearch.Winners", winners);
-        ItemEventSearch.getPlugin().saveConfig();
+        if(!winners.contains(this.getPlayer().getName())) {
+            winners.add(this.getPlayer().getName());
+            ItemEventSearch.getPlugin().getConfig().set("ItemEventSearch.Winners", winners);
+            ItemEventSearch.getPlugin().saveConfig();
+        }
     }
 }

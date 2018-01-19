@@ -15,7 +15,7 @@ public class AsyncPlayerChatListener implements Listener {
 
         ItemEventPlayer iep = ItemEventSearch.getItemEventPlayerByName(e.getPlayer().getName());
 
-        e.setFormat(ChatColor.YELLOW + "[" + iep.getLocatedEventItemCount() + "] " + ChatColor.RESET + e.getFormat() + e.getMessage());
+        e.setFormat(ChatColor.YELLOW + "[" + iep.getLocatedEventItemCount() + "] " + ChatColor.RESET + e.getFormat());
 
     }
 

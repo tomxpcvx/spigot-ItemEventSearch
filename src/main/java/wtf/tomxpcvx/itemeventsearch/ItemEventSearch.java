@@ -12,9 +12,7 @@ import me.rojetto.comfy.bukkit.BukkitCommandManager;
 import me.rojetto.comfy.tree.Argument;
 import me.rojetto.comfy.tree.Literal;
 import net.milkbowl.vault.Metrics;
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
@@ -119,6 +117,8 @@ public class ItemEventSearch extends JavaPlugin {
         pluginUtil.registerMessage("EventItemCount", pluginUtil.translateColorCodes(getConfig().getString("ItemEventSearch.EventItemCount")));
         pluginUtil.registerMessage("RemovedEventItem", pluginUtil.translateColorCodes(getConfig().getString("ItemEventSearch.Message.RemovedEventItem")));
         pluginUtil.registerMessage("PickupEventItem", pluginUtil.translateColorCodes(getConfig().getString("ItemEventSearch.Message.PickupEventItem")));
+        pluginUtil.registerMessage("PickupSound", pluginUtil.translateColorCodes(getConfig().getString("ItemEventSearch.PickupSound")));
+        pluginUtil.registerMessage("PickupEffect", pluginUtil.translateColorCodes(getConfig().getString("ItemEventSearch.PickupEffect")));
         pluginUtil.registerMessage("EventItemDrop", pluginUtil.translateColorCodes(getConfig().getString("ItemEventSearch.Message.EventItemDrop")));
         pluginUtil.registerMessage("EventItemPickUp1", pluginUtil.translateColorCodes(getConfig().getString("ItemEventSearch.Message.EventItemPickUp1")));
         pluginUtil.registerMessage("EventItemPickUp2", pluginUtil.translateColorCodes(getConfig().getString("ItemEventSearch.Message.EventItemPickUp2")));
@@ -206,6 +206,8 @@ public class ItemEventSearch extends JavaPlugin {
         getConfig().addDefault("ItemEventSearch.EventItemMaterial", Material.COOKIE.toString());
         getConfig().addDefault("ItemEventSearch.EventItemCount", 0);
         getConfig().addDefault("ItemEventSearch.Prize", 5000.0);
+        getConfig().addDefault("ItemEventSearch.PickupSound", Sound.ENTITY_PLAYER_BURP.toString());
+        getConfig().addDefault("ItemEventSearch.PickupEffect", Effect.MOBSPAWNER_FLAMES.toString());
         getConfig().addDefault("ItemEventSearch.Winners", new ArrayList<String>());
         getConfig().addDefault("ItemEventSearch.Scoreboard.Title", "&3&o&lEventItem-Counter");
         getConfig().addDefault("ItemEventSearch.Scoreboard.EventItemFind", "&b&oGefundene:");

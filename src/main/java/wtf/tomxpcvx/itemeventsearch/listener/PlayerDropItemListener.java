@@ -19,7 +19,7 @@ public class PlayerDropItemListener implements Listener {
 
         if(e.getItemDrop().getItemStack().getItemMeta().getDisplayName() != null) {
             if (e.getItemDrop().getItemStack().getItemMeta().getDisplayName().equals(Constants.eventItemName) && e.getItemDrop().getItemStack().getType().equals(Constants.eventItemMaterial)) {
-                if (iep.getPlayer().hasPermission("eventitemsearch.admin")) {
+                if (iep.getPlayer().hasPermission("itemeventsearch.admin")) {
                     Constants.eventItemCount += 1;
                     ItemEventSearch.getPlugin().getConfig().set("ItemEventSearch.EventItemCount", Constants.eventItemCount);
                     ItemEventSearch.getPlugin().saveConfig();

@@ -18,7 +18,7 @@ public class PlayerChangedWorldListener implements Listener {
     @EventHandler
     public void onWorldChange(PlayerChangedWorldEvent e) {
         ItemEventPlayer iep = new ItemEventPlayer(e.getPlayer());
-        World w = Bukkit.getWorld(ItemEventSearch.getPlugin().getConfig().getString("EventItemSearch.World"));
+        World w = Bukkit.getWorld(ItemEventSearch.getPlugin().getConfig().getString("ItemEventSearch.World"));
         if (w != null && iep.getPlayer().getWorld() == w) {
             FileConfiguration matchConfig = new Config().getConfig(iep.getPlayer().getName(), true);
             List<Integer> eventItemIds = (List<Integer>) matchConfig.getList("ItemEventSearch.Player." + iep.getPlayer().getName() + ".LocatedEventItemIds");

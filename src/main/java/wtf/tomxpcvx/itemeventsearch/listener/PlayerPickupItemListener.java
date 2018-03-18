@@ -9,6 +9,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 
+import java.util.ArrayList;
+
 public class PlayerPickupItemListener implements Listener {
 
     @EventHandler
@@ -22,20 +24,27 @@ public class PlayerPickupItemListener implements Listener {
                     EventItem currentItem = new EventItem(e.getItem().getItemStack());
 
                     if (iep.isEventItemRemoveMode()) {
+                        int index = -1;
+                        ArrayList<Integer> eventIds = new ArrayList<>();
                         for (EventItem eventItem : ItemEventSearch.eventItems) {
+                            index++;
                             if (eventItem.getEventItemId() == currentItem.getEventItemId()) {
+                                System.out.println("YES");
                                 currentItem.setMarkedRemoval(true);
                                 if (currentItem.isMarkedRemoval()) {
                                     e.setCancelled(false);
-                                    ItemEventSearch.eventItems.remove(currentItem);
-                                    for(ItemEventPlayer itemEventPlayer : ItemEventSearch.players) {
+                                    eventIds.add(index);
+                                    Constants.eventItemCount = Constants.eventItemCount - 1;
+                                    iep.getPlayer().sendMessage(Constants.pluginDisplayName + Constants.replace(Constants.replace(Constants.msg.get("RemovedEventItem"), "@NR", String.valueOf(eventItem.getEventItemId())), "@NR", String.valueOf(eventItem.getMaterial().name())));
+                                    for (ItemEventPlayer itemEventPlayer : ItemEventSearch.players) {
                                         itemEventPlayer.removeLocatedEventItemId(currentItem.getEventItemId());
                                         ScoreboardUtil.update(itemEventPlayer);
                                     }
-                                    Constants.eventItemCount = Constants.eventItemCount - 1;
-                                    iep.getPlayer().sendMessage(Constants.pluginDisplayName + Constants.replace(Constants.replace(Constants.msg.get("RemoveEventItem"), "@EVENTITEMNR", String.valueOf(eventItem.getEventItemId())), "@EVENTITEMNR", String.valueOf(eventItem.getMaterial().name())));
                                 }
                             }
+                        }
+                        for(int id : eventIds) {
+                            ItemEventSearch.eventItems.remove(id);
                         }
                     } else if (iep.getPlayer().hasPermission("itemeventsearch.play")) {
                         for (EventItem eventItem : ItemEventSearch.eventItems) {

@@ -29,7 +29,6 @@ public class PlayerPickupItemListener implements Listener {
                         for (EventItem eventItem : ItemEventSearch.eventItems) {
                             index++;
                             if (eventItem.getEventItemId() == currentItem.getEventItemId()) {
-                                System.out.println("YES");
                                 currentItem.setMarkedRemoval(true);
                                 if (currentItem.isMarkedRemoval()) {
                                     e.setCancelled(false);

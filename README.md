@@ -3,8 +3,8 @@
 Spigot plugin for event item searching
 
 ## Useful Links
-* **Downloads** - <https://github.com/tomxpcvx/spigot-ItemEventSearch/releases>
-* **Wiki** - <https://github.com/tomxpcvx/spigot-ItemEventSearch/wiki>
+* **Downloads** - <https://github.com/fallstudios/spigot-ItemEventSearch/releases>
+* **Wiki** - <https://github.com/fallstudios/spigot-ItemEventSearch/wiki>
 
 ## Build
 ItemEventSearch uses Maven as build system.

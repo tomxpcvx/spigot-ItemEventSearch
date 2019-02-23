@@ -11,14 +11,12 @@ import me.rojetto.comfy.argument.FloatType;
 import me.rojetto.comfy.bukkit.BukkitCommandManager;
 import me.rojetto.comfy.tree.Argument;
 import me.rojetto.comfy.tree.Literal;
-import net.milkbowl.vault.Metrics;
 import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -82,14 +80,6 @@ public class ItemEventSearch extends JavaPlugin {
                 ScoreboardUtil.initializeScoreboard(iep);
                 players.add(iep);
             }
-        }
-
-
-        try {
-            Metrics metrics = new Metrics(this);
-            metrics.start();
-        } catch (IOException localIOException) {
-            localIOException.printStackTrace();
         }
 
         if (!pluginUtil.setupEconomy()) {

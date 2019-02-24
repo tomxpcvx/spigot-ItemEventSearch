@@ -28,4 +28,4 @@ You can find the plugin jar in the `target` directory.
 If you make any changes or improvements to the plugin, please make a pull request to merge your changes with the upstream.
 
 ## License
-ItemEventSearch is licensed under the GLP-3.0 license. Please see [`LICENSE`](https://github.com/tomxpcvx/spigot-ItemEventSearch/blob/master/LICENSE) for more info.
+ItemEventSearch is licensed under the GPL-3.0 license. Please see [`LICENSE`](https://github.com/tomxpcvx/spigot-ItemEventSearch/blob/master/LICENSE) for more info.

@@ -1,4 +1,4 @@
-# spigot-ItemEventSearch -[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftomxpcvx%2Fspigot-ItemEventSearch.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftomxpcvx%2Fspigot-ItemEventSearch?ref=badge_shield)
+# spigot-ItemEventSearch - [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftomxpcvx%2Fspigot-ItemEventSearch.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftomxpcvx%2Fspigot-ItemEventSearch?ref=badge_shield)
 
 Spigot plugin for event item searching
 

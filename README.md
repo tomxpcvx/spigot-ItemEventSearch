@@ -1,4 +1,5 @@
 # spigot-ItemEventSearch - [![Build Status](https://travis-ci.org/tomxpcvx/spigot-ItemEventSearch.svg?branch=master)](https://travis-ci.org/tomxpcvx/spigot-ItemEventSearch)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftomxpcvx%2Fspigot-ItemEventSearch.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftomxpcvx%2Fspigot-ItemEventSearch?ref=badge_shield)
 
 Spigot plugin for event item searching
 
@@ -29,3 +30,6 @@ If you make any changes or improvements to the plugin, please make a pull reques
 
 ## License
 ItemEventSearch is licensed under the GPL-3.0 license. Please see [`LICENSE`](https://github.com/tomxpcvx/spigot-ItemEventSearch/blob/master/LICENSE) for more info.
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftomxpcvx%2Fspigot-ItemEventSearch.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftomxpcvx%2Fspigot-ItemEventSearch?ref=badge_large)

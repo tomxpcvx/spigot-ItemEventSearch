@@ -6,7 +6,7 @@
 
     <groupId>wtf.tomxpcvx.itemeventsearch</groupId>
     <artifactId>ItemEventSearch</artifactId>
-    <version>1.1.5-RELEASE</version>
+    <version>1.2.0-RELEASE</version>
 
 
     <repositories>
@@ -17,6 +17,10 @@
 		<repository>
             <id>essx-repo</id>
             <url>https://ci.ender.zone/plugin/repository/everything/</url>
+        </repository>
+        <repository>
+           <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
         </repository>
 	</repositories>
 
@@ -38,6 +42,11 @@
             <artifactId>VaultAPI</artifactId>
             <version>1.7</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.Rojetto</groupId>
+            <artifactId>Comfy</artifactId>
+            <version>3ffd96eeb2</version>
         </dependency>
     </dependencies>
 

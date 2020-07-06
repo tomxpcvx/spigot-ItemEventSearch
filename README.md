@@ -1,4 +1,4 @@
-# spigot-ItemEventSearch - ![Java CI with Maven](https://github.com/tomxpcvx/spigot-ItemEventSearch/workflows/Java%20CI%20with%20Maven/badge.svg?branch=master) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftomxpcvx%2Fspigot-ItemEventSearch.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftomxpcvx%2Fspigot-ItemEventSearch?ref=badge_shield)
+# spigot-ItemEventSearch - ![minecraft](https://img.shields.io/static/v1?label=minecraft&message=1.16.1&color=green) ![Java CI with Maven](https://github.com/tomxpcvx/spigot-ItemEventSearch/workflows/Java%20CI%20with%20Maven/badge.svg?branch=master) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftomxpcvx%2Fspigot-ItemEventSearch.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftomxpcvx%2Fspigot-ItemEventSearch?ref=badge_shield)
 
 ItemEventSearch is a minecraft plugin that allows server operators to run a small mini-game in the form of an item search. 
 The plugin offers the possibility to start the event in any world on the server.
@@ -29,6 +29,9 @@ cd spigot-ItemEventSearch/
 ```
 
 You can find the plugin jar in the `target` directory.
+
+## Thanks to ❤
+- [Comfy](https://github.com/Rojetto/Comfy) from [@Rojetto](https://github.com/Rojetto)
 
 ## Contribute
 

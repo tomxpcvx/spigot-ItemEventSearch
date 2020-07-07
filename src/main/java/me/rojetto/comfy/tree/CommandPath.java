@@ -25,10 +25,10 @@ public class CommandPath implements Comparable<CommandPath> {
             StringBuilder segment = new StringBuilder();
             boolean       lastNode;
 
-            if (i == nodeList.size() - 1) { // If this is an end point, give it all of the remaining segments
+            if(i == nodeList.size() - 1) { // If this is an end point, give it all of the remaining segments
                 for (int j = i; j < segments.size(); j++) {
                     segment.append(segments.get(j));
-                    if (j < segments.size() - 1) {
+                    if(j < segments.size() - 1) {
                         segment.append(" ");
                     }
                 }
@@ -39,7 +39,7 @@ public class CommandPath implements Comparable<CommandPath> {
                 lastNode = false;
             }
 
-            if (nodeList.get(i) instanceof Argument) {
+            if(nodeList.get(i) instanceof Argument) {
                 Argument argument = (Argument) nodeList.get(i);
                 Object   o;
                 try {
@@ -50,7 +50,7 @@ public class CommandPath implements Comparable<CommandPath> {
                 argumentMap.put(argument.getName(), o);
             }
 
-            if (lastNode) {
+            if(lastNode) {
                 break;
             }
         }
@@ -59,7 +59,7 @@ public class CommandPath implements Comparable<CommandPath> {
     }
 
     public CommandNode getLastNode() {
-        if (nodeList.size() > 0) {
+        if(nodeList.size() > 0) {
             return nodeList.get(nodeList.size() - 1);
         } else {
             return null;
@@ -85,11 +85,11 @@ public class CommandPath implements Comparable<CommandPath> {
 
             boolean permittedPermission = false;
 
-            if (nodeList.get(i).hasPermission()) {
+            if(nodeList.get(i).hasPermission()) {
                 permittedPermission = sender.hasPermission(nodeList.get(i).getPermission());
             }
 
-            if (nodeList.get(i).hasPermission())
+            if(nodeList.get(i).hasPermission())
                 return (permittedPermission);
         }
 
@@ -103,7 +103,7 @@ public class CommandPath implements Comparable<CommandPath> {
         for (int i = 0; i < nodeList.size(); i++) {
             builder.append(nodeList.get(i).toString());
 
-            if (i < nodeList.size() - 1) {
+            if(i < nodeList.size() - 1) {
                 builder.append(" ");
             }
         }
@@ -113,7 +113,7 @@ public class CommandPath implements Comparable<CommandPath> {
 
     @Override
     public int compareTo(CommandPath o) {
-        if (o.getLastNode() == getLastNode()) {
+        if(o.getLastNode() == getLastNode()) {
             return 0;
         }
 
@@ -121,17 +121,17 @@ public class CommandPath implements Comparable<CommandPath> {
             CommandNode myNode    = nodeList.get(i);
             CommandNode otherNode = o.getNodeList().get(i);
 
-            if (myNode != otherNode) {
-                if (!myNode.isCategory() && otherNode.isCategory()) {
+            if(myNode != otherNode) {
+                if(!myNode.isCategory() && otherNode.isCategory()) {
                     return 1;
-                } else if (myNode.isCategory() && !otherNode.isCategory()) {
+                } else if(myNode.isCategory() && !otherNode.isCategory()) {
                     return -1;
                 } else {
                     return myNode.getParent().getChildren().indexOf(myNode) - otherNode.getParent().getChildren().indexOf(otherNode);
                 }
             }
 
-            if (i == Math.min(nodeList.size(), o.getNodeList().size()) - 1) {
+            if(i == Math.min(nodeList.size(), o.getNodeList().size()) - 1) {
                 return nodeList.size() - o.getNodeList().size();
             }
         }

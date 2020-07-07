@@ -1,9 +1,9 @@
 package wtf.tomxpcvx.itemeventsearch.listener;
 
-import wtf.tomxpcvx.itemeventsearch.Constants;
-import wtf.tomxpcvx.itemeventsearch.ItemEventSearch;
-import wtf.tomxpcvx.itemeventsearch.util.EventItem;
-import wtf.tomxpcvx.itemeventsearch.util.ItemEventPlayer;
+import wtf.tomxpcvx.itemeventsearch.domain.EventItem;
+import wtf.tomxpcvx.itemeventsearch.domain.ItemEventPlayer;
+import wtf.tomxpcvx.itemeventsearch.util.ItemEventSearchUtil;
+import wtf.tomxpcvx.itemeventsearch.util.PluginUtil;
 import wtf.tomxpcvx.itemeventsearch.util.ScoreboardUtil;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,27 +15,31 @@ public class PlayerPickupItemListener implements Listener {
 
     @EventHandler
     public void onItemPickup(PlayerPickupItemEvent e) {
-        ItemEventPlayer iep = ItemEventSearch.getItemEventPlayerByName(e.getPlayer().getName());
+        ItemEventPlayer iep = ItemEventSearchUtil.getItemEventPlayerByName(e.getPlayer().getName());
 
-        if (iep != null) {
-            if (e.getItem().getItemStack().getItemMeta().hasDisplayName()) {
-                if (e.getItem().getItemStack().getItemMeta().getDisplayName().startsWith(Constants.eventItemName)) {
+        if(iep != null) {
+            if(e.getItem().getItemStack().getItemMeta().hasDisplayName()) {
+                if(e.getItem().getItemStack().getItemMeta().getDisplayName().startsWith(ItemEventSearchUtil.eventItemName)) {
                     e.setCancelled(true);
                     EventItem currentItem = new EventItem(e.getItem().getItemStack());
 
-                    if (iep.isEventItemRemoveMode()) {
+                    if(iep.isEventItemRemoveMode()) {
                         int index = -1;
                         ArrayList<Integer> eventIds = new ArrayList<>();
-                        for (EventItem eventItem : ItemEventSearch.eventItems) {
+                        for (EventItem eventItem : ItemEventSearchUtil.eventItems) {
                             index++;
-                            if (eventItem.getEventItemId() == currentItem.getEventItemId()) {
+                            if(eventItem.getEventItemId() == currentItem.getEventItemId()) {
                                 currentItem.setMarkedRemoval(true);
-                                if (currentItem.isMarkedRemoval()) {
+                                if(currentItem.isMarkedRemoval()) {
                                     e.setCancelled(false);
                                     eventIds.add(index);
-                                    Constants.eventItemCount = Constants.eventItemCount - 1;
-                                    iep.getPlayer().sendMessage(Constants.pluginDisplayName + Constants.replace(Constants.replace(Constants.msg.get("RemovedEventItem"), "@NR", String.valueOf(eventItem.getEventItemId())), "@NR", String.valueOf(eventItem.getMaterial().name())));
-                                    for (ItemEventPlayer itemEventPlayer : ItemEventSearch.players) {
+                                    ItemEventSearchUtil.eventItemCount = ItemEventSearchUtil.eventItemCount - 1;
+                                    iep.getPlayer().sendMessage(
+                                            PluginUtil.pluginDisplayName +
+                                                    ItemEventSearchUtil.messages.get("RemovedEventItem")
+                                                            .replace("@NR", String.valueOf(eventItem.getEventItemId()))
+                                                            .replace("@NR", eventItem.getMaterial().name()));
+                                    for (ItemEventPlayer itemEventPlayer : ItemEventSearchUtil.players) {
                                         itemEventPlayer.removeLocatedEventItemId(currentItem.getEventItemId());
                                         ScoreboardUtil.update(itemEventPlayer);
                                     }
@@ -43,26 +47,27 @@ public class PlayerPickupItemListener implements Listener {
                             }
                         }
                         for(int id : eventIds) {
-                            ItemEventSearch.eventItems.remove(id);
+                            ItemEventSearchUtil.eventItems.remove(id);
                         }
-                    } else if (iep.getPlayer().hasPermission("itemeventsearch.play")) {
-                        for (EventItem eventItem : ItemEventSearch.eventItems) {
-                            if (eventItem.getEventItemId() == currentItem.getEventItemId()) {
+                    } else if(iep.getPlayer().hasPermission("itemeventsearch.play")) {
+                        for (EventItem eventItem : ItemEventSearchUtil.eventItems) {
+                            if(eventItem.getEventItemId() == currentItem.getEventItemId()) {
 
                                 boolean playerHasItem = false;
                                 for (int eventItemId : iep.getLocatedEventItemIds()) {
                                     if (eventItemId == currentItem.getEventItemId()) {
                                         playerHasItem = true;
+                                        break;
                                     }
                                 }
 
-                                if (!playerHasItem) {
+                                if(!playerHasItem) {
                                     iep.addLocatedEventItemId(currentItem.getEventItemId());
-                                    currentItem.itemPickupSequenz(iep);
+                                    currentItem.itemPickupSequence(iep);
                                     ScoreboardUtil.update(iep);
                                 } else {
                                     if(iep.getLastAlreadyMessageDelay() == 50) {
-                                        iep.getPlayer().sendMessage(Constants.pluginDisplayName + Constants.msg.get("Already"));
+                                        iep.getPlayer().sendMessage(PluginUtil.pluginDisplayName + ItemEventSearchUtil.messages.get("Already"));
                                         iep.setLastAlreadyMessageDelay(0);
                                     } else {
                                         iep.addLastAlreadyMessageDelay(1);
@@ -74,7 +79,7 @@ public class PlayerPickupItemListener implements Listener {
                     }
                 }
             }
-            ItemEventSearch.setItemEventPlayer(iep);
+            ItemEventSearchUtil.setItemEventPlayer(iep);
         }
     }
 }

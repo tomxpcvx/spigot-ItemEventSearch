@@ -1,11 +1,10 @@
-package wtf.tomxpcvx.itemeventsearch.util;
+package wtf.tomxpcvx.itemeventsearch.domain;
 
-import wtf.tomxpcvx.itemeventsearch.Constants;
 import wtf.tomxpcvx.itemeventsearch.ItemEventSearch;
-import org.bukkit.Effect;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Scoreboard;
+import wtf.tomxpcvx.itemeventsearch.util.ItemEventSearchUtil;
+import wtf.tomxpcvx.itemeventsearch.util.PluginUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,16 +104,14 @@ public class ItemEventPlayer {
         return strings.get(0);
     }
 
-
-
     public void setWin() {
         PluginUtil pluginUtil = new PluginUtil();
-        if(pluginUtil.econ != null) {
-            pluginUtil.econ.depositPlayer(this.getPlayer().getName(), Constants.prize);
-            this.getPlayer().sendMessage(Constants.pluginDisplayName + Constants.replace(Constants.msg.get("WinMoney"), "@money", String.valueOf(Constants.prize)));
+        if(pluginUtil.getEconomy() != null) {
+            pluginUtil.getEconomy().depositPlayer(this.getPlayer().getName(), ItemEventSearchUtil.prize);
+            this.getPlayer().sendMessage(PluginUtil.pluginDisplayName + ItemEventSearchUtil.messages.get("WinMoney").replace("@money", String.valueOf(ItemEventSearchUtil.prize)));
             this.addItemEventPlayerToWinners();
         } else {
-            this.getPlayer().sendMessage(Constants.pluginDisplayName + Constants.msg.get("Win"));
+            this.getPlayer().sendMessage(PluginUtil.pluginDisplayName + ItemEventSearchUtil.messages.get("Win"));
             this.addItemEventPlayerToWinners();
         }
     }

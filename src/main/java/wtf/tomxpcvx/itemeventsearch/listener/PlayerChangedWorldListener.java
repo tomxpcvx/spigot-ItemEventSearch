@@ -1,8 +1,8 @@
 package wtf.tomxpcvx.itemeventsearch.listener;
 
-import wtf.tomxpcvx.itemeventsearch.Config;
 import wtf.tomxpcvx.itemeventsearch.ItemEventSearch;
-import wtf.tomxpcvx.itemeventsearch.util.ItemEventPlayer;
+import wtf.tomxpcvx.itemeventsearch.domain.ItemEventPlayer;
+import wtf.tomxpcvx.itemeventsearch.util.ConfigUtil;
 import wtf.tomxpcvx.itemeventsearch.util.ScoreboardUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -19,9 +19,9 @@ public class PlayerChangedWorldListener implements Listener {
     public void onWorldChange(PlayerChangedWorldEvent e) {
         ItemEventPlayer iep = new ItemEventPlayer(e.getPlayer());
         World w = Bukkit.getWorld(ItemEventSearch.getPlugin().getConfig().getString("ItemEventSearch.World"));
-        if (w != null && iep.getPlayer().getWorld() == w) {
-            FileConfiguration matchConfig = new Config().getConfig(iep.getPlayer().getName(), true);
-            List<Integer> eventItemIds = (List<Integer>) matchConfig.getList("ItemEventSearch.Player." + iep.getPlayer().getName() + ".LocatedEventItemIds");
+        if(w != null && iep.getPlayer().getWorld() == w) {
+            FileConfiguration playerConfig = ConfigUtil.getConfig(iep.getPlayer().getUniqueId().toString(), true);
+            List<Integer> eventItemIds = (List<Integer>) playerConfig.getList("ItemEventSearch.Player." + iep.getPlayer().getUniqueId().toString() + ".LocatedEventItemIds");
             iep.setLocatedEventItemIds(eventItemIds);
             ScoreboardUtil.create(iep);
         } else {

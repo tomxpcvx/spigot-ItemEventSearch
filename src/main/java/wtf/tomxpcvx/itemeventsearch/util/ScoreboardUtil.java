@@ -1,8 +1,8 @@
 package wtf.tomxpcvx.itemeventsearch.util;
 
-import wtf.tomxpcvx.itemeventsearch.Constants;
 import org.bukkit.Bukkit;
 import org.bukkit.scoreboard.*;
+import wtf.tomxpcvx.itemeventsearch.domain.ItemEventPlayer;
 
 public class ScoreboardUtil {
 
@@ -18,12 +18,12 @@ public class ScoreboardUtil {
 
         Objective objective = board.registerNewObjective(boardName, "dummy");
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-        objective.setDisplayName(Constants.msg.get("Scoreboard.Title"));
+        objective.setDisplayName(ItemEventSearchUtil.messages.get("Scoreboard.Title"));
 
-        Score map = objective.getScore(Constants.msg.get("Scoreboard.EventItemFind"));
+        Score map = objective.getScore(ItemEventSearchUtil.messages.get("Scoreboard.EventItemFind"));
         map.setScore(iep.getLocatedEventItemCount());
-        Score cookies = objective.getScore(Constants.msg.get("Scoreboard.EventItemExist"));
-        cookies.setScore(Constants.eventItemCount);
+        Score cookies = objective.getScore(ItemEventSearchUtil.messages.get("Scoreboard.EventItemExist"));
+        cookies.setScore(ItemEventSearchUtil.eventItemCount);
 
         iep.setScoreboard(board);
     }
@@ -33,7 +33,7 @@ public class ScoreboardUtil {
     }
 
     public static void leave(ItemEventPlayer iep) {
-        if (iep.getPlayer().getScoreboard().getObjective(DisplaySlot.SIDEBAR) != null) {
+        if(iep.getPlayer().getScoreboard().getObjective(DisplaySlot.SIDEBAR) != null) {
             iep.getPlayer().getScoreboard().getObjective(DisplaySlot.SIDEBAR).unregister();
             iep.setScoreboard(null);
         }
@@ -45,16 +45,16 @@ public class ScoreboardUtil {
 
         Objective objective = board.getObjective(BoardName);
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-        objective.setDisplayName(Constants.msg.get("Scoreboard.Title"));
+        objective.setDisplayName(ItemEventSearchUtil.messages.get("Scoreboard.Title"));
 
 
-        board.resetScores(Constants.msg.get("Scoreboard.EventItemFind"));
-        Score s = objective.getScore(Constants.msg.get("Scoreboard.EventItemFind"));
+        board.resetScores(ItemEventSearchUtil.messages.get("Scoreboard.EventItemFind"));
+        Score s = objective.getScore(ItemEventSearchUtil.messages.get("Scoreboard.EventItemFind"));
 
-        if (objective.getScore(Constants.msg.get("Scoreboard.EventItemExist")).getScore() != Constants.eventItemCount) {
-            board.resetScores(Constants.msg.get("Scoreboard.EventItemExist"));
-            Score hidden = objective.getScore(Constants.msg.get("Scoreboard.EventItemExist"));
-            hidden.setScore(Constants.eventItemCount);
+        if(objective.getScore(ItemEventSearchUtil.messages.get("Scoreboard.EventItemExist")).getScore() != ItemEventSearchUtil.eventItemCount) {
+            board.resetScores(ItemEventSearchUtil.messages.get("Scoreboard.EventItemExist"));
+            Score hidden = objective.getScore(ItemEventSearchUtil.messages.get("Scoreboard.EventItemExist"));
+            hidden.setScore(ItemEventSearchUtil.eventItemCount);
         }
         s.setScore(iep.getLocatedEventItemCount());
     }

@@ -36,7 +36,7 @@ public class BukkitCommandManager extends CommandManager<BukkitCommandContext, B
             CommandMap map = getBukkitCommandMap();
 
             for (CommandNode node : getRoot().getChildren()) {
-                if (!(node instanceof Literal)) {
+                if(!(node instanceof Literal)) {
                     continue;
                 }
 
@@ -47,10 +47,10 @@ public class BukkitCommandManager extends CommandManager<BukkitCommandContext, B
                 pluginCommand.setTabCompleter(completer);
                 pluginCommand.setAliases(literal.getAliases());
                 pluginCommand.setUsage("/" + literal.getLabel() + " ?");
-                if (literal.hasDescription()) {
+                if(literal.hasDescription()) {
                     pluginCommand.setDescription(literal.getDescription());
                 }
-                if (literal.hasPermission()) {
+                if(literal.hasPermission()) {
                     pluginCommand.setPermission(literal.getPermission());
                 }
 

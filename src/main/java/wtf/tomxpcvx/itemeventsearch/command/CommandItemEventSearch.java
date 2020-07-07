@@ -1,8 +1,7 @@
 package wtf.tomxpcvx.itemeventsearch.command;
 
-import wtf.tomxpcvx.itemeventsearch.Constants;
 import wtf.tomxpcvx.itemeventsearch.ItemEventSearch;
-import wtf.tomxpcvx.itemeventsearch.util.ItemEventPlayer;
+import wtf.tomxpcvx.itemeventsearch.domain.ItemEventPlayer;
 import me.rojetto.comfy.CommandListener;
 import me.rojetto.comfy.annotation.Arg;
 import me.rojetto.comfy.annotation.CommandHandler;
@@ -12,6 +11,8 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import wtf.tomxpcvx.itemeventsearch.util.ItemEventSearchUtil;
+import wtf.tomxpcvx.itemeventsearch.util.PluginUtil;
 
 import java.util.List;
 
@@ -23,16 +24,16 @@ public class CommandItemEventSearch implements CommandListener {
 
             Player player = (Player) ctxt.getSender().getSender();
             World w = Bukkit.getWorld(ItemEventSearch.getPlugin().getConfig().getString("ItemEventSearch.World"));
-            if (player.getWorld().equals(w)) {
-                ItemStack is = new ItemStack(Constants.eventItemMaterial);
+            if(player.getWorld().equals(w)) {
+                ItemStack is = new ItemStack(ItemEventSearchUtil.eventItemMaterial);
                 ItemMeta im = is.getItemMeta();
-                im.setDisplayName(Constants.eventItemName);
+                im.setDisplayName(ItemEventSearchUtil.eventItemName);
                 is.setItemMeta(im);
                 is.setAmount(64);
                 player.getInventory().addItem(is);
-                player.sendMessage(Constants.pluginDisplayName + Constants.msg.get("CommandGiveEventItem"));
+                player.sendMessage(PluginUtil.pluginDisplayName + ItemEventSearchUtil.messages.get("CommandGiveEventItem"));
             } else {
-                player.sendMessage(Constants.pluginDisplayName + Constants.msg.get("CommandGiveWrongWorld"));
+                player.sendMessage(PluginUtil.pluginDisplayName + ItemEventSearchUtil.messages.get("CommandGiveWrongWorld"));
             }
         }
     }
@@ -45,7 +46,7 @@ public class CommandItemEventSearch implements CommandListener {
             ItemEventSearch.getPlugin().getConfig();
             ItemEventSearch.getPlugin().getConfig().set("ItemEventSearch.World", world.getName());
             ItemEventSearch.getPlugin().saveConfig();
-            player.sendMessage(Constants.pluginDisplayName + Constants.replace(Constants.msg.get("CommandWorldSet"), "@WORLD", world.getName()));
+            player.sendMessage(PluginUtil.pluginDisplayName + ItemEventSearchUtil.messages.get("CommandWorldSet").replace("@WORLD", world.getName()));
         }
     }
 
@@ -55,7 +56,7 @@ public class CommandItemEventSearch implements CommandListener {
             Player player = (Player) ctxt.getSender().getSender();
             ItemEventSearch.getPlugin().getConfig().set("ItemEventSearch.Prize", prize);
             ItemEventSearch.getPlugin().saveConfig();
-            player.sendMessage(Constants.pluginDisplayName + Constants.replace(Constants.msg.get("CommandPrizeSet"), "@MONEY", String.valueOf(prize)));
+            player.sendMessage(PluginUtil.pluginDisplayName + ItemEventSearchUtil.messages.get("CommandPrizeSet").replace("@MONEY", String.valueOf(prize)));
         }
     }
 
@@ -64,9 +65,9 @@ public class CommandItemEventSearch implements CommandListener {
         if(ctxt.getSender().isPlayer()) {
             Player player = (Player) ctxt.getSender().getSender();
             List<String> playerNames = (List<String>) ItemEventSearch.getPlugin().getConfig().getList("ItemEventSearch.Winners");
-            player.sendMessage(Constants.pluginDisplayName + Constants.msg.get("CommandWinners"));
+            player.sendMessage(PluginUtil.pluginDisplayName + ItemEventSearchUtil.messages.get("CommandWinners"));
             for(String playerName : playerNames) {
-                player.sendMessage(Constants.msg.get("CommandWinnersPrefixPlayerNames") + playerName);
+                player.sendMessage(ItemEventSearchUtil.messages.get("CommandWinnersPrefixPlayerNames") + playerName);
             }
         }
     }
@@ -74,12 +75,12 @@ public class CommandItemEventSearch implements CommandListener {
     @CommandHandler("itemeventsearch.command.remove")
     public void onRemoveCommand(BukkitCommandContext ctxt, @Arg("state") boolean enabled) {
         if(ctxt.getSender().isPlayer()) {
-            ItemEventPlayer iep = ItemEventSearch.getItemEventPlayerByName(ctxt.getSender().getSender().getName());
+            ItemEventPlayer iep = ItemEventSearchUtil.getItemEventPlayerByName(ctxt.getSender().getSender().getName());
             if(enabled) {
-                iep.getPlayer().sendMessage(Constants.pluginDisplayName + Constants.msg.get("CommandRemoveEnabled"));
+                iep.getPlayer().sendMessage(PluginUtil.pluginDisplayName + ItemEventSearchUtil.messages.get("CommandRemoveEnabled"));
                 iep.setEventItemRemoveMode(true);
             } else {
-                iep.getPlayer().sendMessage(Constants.pluginDisplayName + Constants.msg.get("CommandRemoveDisabled"));
+                iep.getPlayer().sendMessage(PluginUtil.pluginDisplayName + ItemEventSearchUtil.messages.get("CommandRemoveDisabled"));
                 iep.setEventItemRemoveMode(false);
             }
 

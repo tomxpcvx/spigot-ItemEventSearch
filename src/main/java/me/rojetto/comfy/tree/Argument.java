@@ -14,7 +14,7 @@ public class Argument extends CommandNode<Argument> {
         this.name = name;
         this.type = type;
 
-        if (!name.matches("[A-Za-z0-9]+")) {
+        if(!name.matches("[A-Za-z0-9]+")) {
             throw new CommandTreeException("Argument names can only contain alphanumeric characters.");
         }
     }
@@ -39,7 +39,7 @@ public class Argument extends CommandNode<Argument> {
 
     @Override
     public String toString() {
-        if (isOptional()) {
+        if(isOptional()) {
             return "<" + name + ">";
         } else {
             return "[" + name + "]";

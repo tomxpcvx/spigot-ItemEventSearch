@@ -39,15 +39,15 @@ public class BukkitCommandSender implements CommandSender {
     @Override
     public void pathHelp(CommandPath path) {
         CommandNode lastNode = path.getLastNode();
-        if (lastNode == null) {
+        if(lastNode == null) {
             return;
         }
 
         String line = (isPlayer() ? "/" : "Path: ") + path;
-        if (!lastNode.isExecutable()) {
+        if(!lastNode.isExecutable()) {
             line += " ...";
         }
-        if (lastNode.hasDescription()) {
+        if(lastNode.hasDescription()) {
             line += (isPlayer() ? ": " : " - ") + lastNode.getDescription();
         }
 

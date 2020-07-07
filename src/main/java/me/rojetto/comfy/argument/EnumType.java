@@ -18,7 +18,7 @@ public class EnumType<T extends Enum> extends ArgumentType<T> {
     }
 
     public static <T extends Enum> Map<String, T> makeEnumMap(T[] enumValues, String[] names) throws IllegalArgumentException {
-        if (enumValues.length != names.length) {
+        if(enumValues.length != names.length) {
             throw new IllegalArgumentException("The number of enum values and names has to be the same.");
         }
 
@@ -34,7 +34,7 @@ public class EnumType<T extends Enum> extends ArgumentType<T> {
     @Override
     public T parse(String segment) throws ArgumentParseException {
         for (String enumName : enumMap.keySet()) {
-            if (enumName.equalsIgnoreCase(segment)) {
+            if(enumName.equalsIgnoreCase(segment)) {
                 return enumMap.get(enumName);
             }
         }
@@ -44,7 +44,7 @@ public class EnumType<T extends Enum> extends ArgumentType<T> {
         Iterator<String> iter = enumMap.keySet().iterator();
         while (iter.hasNext()) {
             options.append(iter.next());
-            if (iter.hasNext()) {
+            if(iter.hasNext()) {
                 options.append("|");
             }
         }

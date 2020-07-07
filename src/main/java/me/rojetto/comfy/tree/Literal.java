@@ -16,7 +16,7 @@ public class Literal extends CommandNode<Literal> {
         this.aliases.addAll(Arrays.asList(aliases));
 
         for (String alias : this.aliases) {
-            if (!alias.matches("[A-Za-z0-9]+")) {
+            if(!alias.matches("[A-Za-z0-9]+")) {
                 throw new CommandTreeException("Literals can only contain alphanumeric characters.");
             }
         }
@@ -36,7 +36,7 @@ public class Literal extends CommandNode<Literal> {
     @Override
     public boolean matches(String segment) {
         for (String alias : aliases) {
-            if (alias.equalsIgnoreCase(segment)) {
+            if(alias.equalsIgnoreCase(segment)) {
                 return true;
             }
         }

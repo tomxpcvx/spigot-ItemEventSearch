@@ -23,7 +23,7 @@ public class BooleanType extends ArgumentType<Boolean> {
     public Boolean parse(String segment) throws ArgumentParseException {
         for (boolean key : booleanNames.keySet()) {
             for (String alias : booleanNames.get(key)) {
-                if (alias.equalsIgnoreCase(segment)) {
+                if(alias.equalsIgnoreCase(segment)) {
                     return key;
                 }
             }

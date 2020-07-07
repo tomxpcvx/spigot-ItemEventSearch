@@ -14,7 +14,7 @@ public abstract class CommandNode<T extends CommandNode<T>> {
     private Map<String, String> tags = new HashMap<>();
 
     public T then(CommandNode child) {
-        if (child.getParent() != null) {
+        if(child.getParent() != null) {
             throw new CommandTreeException("This node already has a parent");
         }
 
@@ -26,7 +26,7 @@ public abstract class CommandNode<T extends CommandNode<T>> {
 
     public T flag(Flag flag) {
         for (Flag otherFlag : getPath().getFlags()) {
-            if (otherFlag.getLabel().equalsIgnoreCase(flag.getLabel())) {
+            if(otherFlag.getLabel().equalsIgnoreCase(flag.getLabel())) {
                 throw new CommandTreeException("Flag '" + flag.getLabel() + "' already exists in this path.");
             }
         }
@@ -57,7 +57,7 @@ public abstract class CommandNode<T extends CommandNode<T>> {
     public CommandPath parsePath(List<String> segments, boolean returnIncompletePath) throws PathException {
         List<String> segmentsCopy = new ArrayList<>(segments);
 
-        if (segmentsCopy.size() == 0) {
+        if(segmentsCopy.size() == 0) {
             return new CommandPath(new ArrayList<CommandNode>());
         }
 
@@ -68,10 +68,10 @@ public abstract class CommandNode<T extends CommandNode<T>> {
             StringBuilder segment = new StringBuilder();
             boolean lastNode;
 
-            if (child.isLeaf() && child instanceof Argument) { // If this is a leaf argument, give it all of the remaining segments
+            if(child.isLeaf() && child instanceof Argument) { // If this is a leaf argument, give it all of the remaining segments
                 for (int i = 0; i < segments.size(); i++) {
                     segment.append(segments.get(i));
-                    if (i < segments.size() - 1) {
+                    if(i < segments.size() - 1) {
                         segment.append(" ");
                     }
                 }
@@ -82,8 +82,8 @@ public abstract class CommandNode<T extends CommandNode<T>> {
                 lastNode = false;
             }
 
-            if (child.matches(segment.toString())) {
-                if (lastNode) {
+            if(child.matches(segment.toString())) {
+                if(lastNode) {
                     segmentsCopy.clear();
                 } else {
                     segmentsCopy.remove(0);
@@ -95,7 +95,7 @@ public abstract class CommandNode<T extends CommandNode<T>> {
             }
         }
 
-        if (!matchedChild && !returnIncompletePath) {
+        if(!matchedChild && !returnIncompletePath) {
             throw new PathException("Invalid sub-command or argument: '" + segments.get(0) + "'");
         }
 
@@ -113,11 +113,11 @@ public abstract class CommandNode<T extends CommandNode<T>> {
     public List<CommandNode> getNodesWithTag(String tag, boolean deep) {
         List<CommandNode> nodes = new ArrayList<>();
 
-        if (hasTag(tag)) {
+        if(hasTag(tag)) {
             nodes.add(this);
         }
 
-        if (deep || !hasTag(tag)) {
+        if(deep || !hasTag(tag)) {
             for (CommandNode child : children) {
                 nodes.addAll(child.getNodesWithTag(tag, deep));
             }
@@ -143,11 +143,11 @@ public abstract class CommandNode<T extends CommandNode<T>> {
     }
 
     public boolean isOptional() {
-        if (hasTag("handler"))
+        if(hasTag("handler"))
             return false;
 
         for (CommandNode child : children) {
-            if (!child.isOptional()) {
+            if(!child.isOptional()) {
                 return false;
             }
         }
@@ -156,10 +156,10 @@ public abstract class CommandNode<T extends CommandNode<T>> {
     }
 
     public boolean isExecutable() {
-        if (hasTag("handler")) {
+        if(hasTag("handler")) {
             return true;
         } else {
-            if (isOptional()) {
+            if(isOptional()) {
                 return parent.isExecutable();
             } else {
                 return false;
@@ -176,8 +176,8 @@ public abstract class CommandNode<T extends CommandNode<T>> {
     }
 
     public String getHandler() {
-        if (isExecutable()) {
-            if (hasTag("handler")) {
+        if(isExecutable()) {
+            if(hasTag("handler")) {
                 return getTag("handler");
             } else {
                 return parent.getHandler();
@@ -204,7 +204,7 @@ public abstract class CommandNode<T extends CommandNode<T>> {
     public List<CommandNode> getLeafNodes() {
         List<CommandNode> leafNodes = new ArrayList<>();
 
-        if (isLeaf()) {
+        if(isLeaf()) {
             leafNodes.add(this);
         } else {
             for (CommandNode child : children) {
@@ -220,11 +220,11 @@ public abstract class CommandNode<T extends CommandNode<T>> {
     }
 
     public CommandNode getLastOptional() {
-        if (isLeaf()) {
+        if(isLeaf()) {
             return this;
         }
 
-        if (isLastExecutable() || isOptional()) {
+        if(isLastExecutable() || isOptional()) {
             return getLeafNodes().get(0);
         }
 
@@ -233,11 +233,11 @@ public abstract class CommandNode<T extends CommandNode<T>> {
 
     public boolean hasChild(CommandNode node) {
         for (CommandNode child : children) {
-            if (child == node) {
+            if(child == node) {
                 return true;
             }
 
-            if (child.hasChild(node)) {
+            if(child.hasChild(node)) {
                 return true;
             }
         }

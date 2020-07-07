@@ -1,6 +1,5 @@
 package wtf.tomxpcvx.itemeventsearch.util;
 
-import wtf.tomxpcvx.itemeventsearch.Constants;
 import wtf.tomxpcvx.itemeventsearch.ItemEventSearch;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
@@ -9,43 +8,59 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 
 public class PluginUtil {
 
-    private ItemEventSearch plugin;
-    public Economy econ;
-    public Permission perms;
+    public static String pluginName = "ItemEventSearch";
+    public static String pluginConsoleName = "[" + pluginName + "] ";
+    public static String pluginDisplayName;
+    private Economy economy;
+    private Permission permission;
 
-    public PluginUtil() {
-        this.plugin = ItemEventSearch.getPlugin();
-    }
+    public PluginUtil() {}
 
-    public boolean setupEconomy() {
-        if (plugin.getServer().getPluginManager().getPlugin("Vault") == null) {
-            return false;
+    private boolean setupEconomy() {
+        RegisteredServiceProvider<Economy> rsp = ItemEventSearch.getPlugin().getServer().getServicesManager().getRegistration(Economy.class);
+        if(rsp != null) {
+            this.economy = rsp.getProvider();
+            return true;
         }
-        RegisteredServiceProvider<Economy> rsp = plugin.getServer().getServicesManager().getRegistration(Economy.class);
-        if (rsp == null) {
-            return false;
+        return false;
+    }
+
+    private boolean setupPermissions() {
+        RegisteredServiceProvider<Permission> rsp = ItemEventSearch.getPlugin().getServer().getServicesManager().getRegistration(Permission.class);
+        if(rsp != null) {
+            this.permission = rsp.getProvider();
+            return true;
         }
-        this.econ = rsp.getProvider();
-        return this.econ != null;
+        return false;
     }
 
-    public boolean setupPermissions() {
-        RegisteredServiceProvider<Permission> rsp = plugin.getServer().getServicesManager().getRegistration(Permission.class);
-        this.perms = rsp.getProvider();
-        return this.perms != null;
-    }
-
-    public void printlnToConsole(String message) {
-        System.out.println(Constants.pluginConsoleName + message);
-    }
-
-    public String translateColorCodes(String message) {
-        return ChatColor.translateAlternateColorCodes('&', message);
+    public void registerExtensions() {
+        if(ItemEventSearch.getPlugin().getServer().getPluginManager().getPlugin("Vault") != null) {
+            if(!setupEconomy()) printlnToConsole("No economy plugin detected!");
+            if(!setupPermissions()) printlnToConsole("No permission plugin detected!");
+        } else {
+            printlnToConsole("Plugin 'Vault' is missing!");
+        }
     }
 
     public void registerMessage(String key, String message) {
-        Constants.msg.put(key, message);
+        ItemEventSearchUtil.messages.put(key, message);
     }
 
+    public static void printlnToConsole(String message) {
+        System.out.println(pluginConsoleName + message);
+    }
+
+    public static String translateColorCodes(String message) {
+        return ChatColor.translateAlternateColorCodes('&', message);
+    }
+
+    public Economy getEconomy() {
+        return this.economy;
+    }
+
+    public Permission getPermission() {
+        return this.permission;
+    }
 
 }

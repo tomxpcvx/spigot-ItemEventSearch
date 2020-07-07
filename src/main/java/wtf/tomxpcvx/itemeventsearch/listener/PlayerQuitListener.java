@@ -1,23 +1,22 @@
 package wtf.tomxpcvx.itemeventsearch.listener;
 
-import wtf.tomxpcvx.itemeventsearch.Config;
-import wtf.tomxpcvx.itemeventsearch.ItemEventSearch;
-import wtf.tomxpcvx.itemeventsearch.util.ItemEventPlayer;
+import wtf.tomxpcvx.itemeventsearch.domain.ItemEventPlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
+import wtf.tomxpcvx.itemeventsearch.util.ConfigUtil;
+import wtf.tomxpcvx.itemeventsearch.util.ItemEventSearchUtil;
 
 public class PlayerQuitListener implements Listener {
 
     @EventHandler
     public void onQuit(PlayerQuitEvent e) {
-        ItemEventPlayer iep = ItemEventSearch.getItemEventPlayerByName(e.getPlayer().getName());
-        Config config = new Config();
-        FileConfiguration matchConfig = config.getConfig(iep.getPlayer().getName(), true);
-        matchConfig.set("ItemEventSearch.Player." + iep.getPlayer().getName() + ".LocatedEventItemIds", iep.getLocatedEventItemIds());
-        //matchConfig.set("ItemEventSearch.Player." + iep.getPlayer().getName() + ".Rank", iep.getRank());
-        config.saveConfig(iep.getPlayer().getName(), true, matchConfig);
-        ItemEventSearch.removeItemEventPlayer(iep);
+        ItemEventPlayer iep = ItemEventSearchUtil.getItemEventPlayerByName(e.getPlayer().getName());
+        FileConfiguration playerConfig = ConfigUtil.getConfig(iep.getPlayer().getUniqueId().toString(), true);
+        playerConfig.set("ItemEventSearch.Player." + iep.getPlayer().getUniqueId().toString() + ".LocatedEventItemIds", iep.getLocatedEventItemIds());
+        //matchConfig.set("ItemEventSearch.Player." + iep.getPlayer().getUniqueId().toString() + ".Rank", iep.getRank());
+        ConfigUtil.saveConfig(iep.getPlayer().getUniqueId().toString(), true, playerConfig);
+        ItemEventSearchUtil.removeItemEventPlayer(iep);
     }
 }

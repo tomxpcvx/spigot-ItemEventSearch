@@ -62,7 +62,7 @@ public abstract class CommandManager<C extends CommandContext, S extends Command
         List<CommandNode> children = lastNode.getChildren();
 
         for (CommandNode child : children) {
-            if (child.getSuggestions(context) != null && child.getPath().checkPermission(sender)) {
+            if(child.getSuggestions(context) != null && child.getPath().checkPermission(sender)) {
                 suggestions.addAll(child.getSuggestions(context));
             }
         }
@@ -70,7 +70,7 @@ public abstract class CommandManager<C extends CommandContext, S extends Command
         Iterator<String> iter = suggestions.iterator();
         while (iter.hasNext()) {
             String suggestion = iter.next();
-            if (!suggestion.matches("(?i)" + lastSegment + ".*")) { // Starts with "lastSegment", case insensitive
+            if(!suggestion.matches("(?i)" + lastSegment + ".*")) { // Starts with "lastSegment", case insensitive
                 iter.remove();
             }
         }
@@ -88,7 +88,7 @@ public abstract class CommandManager<C extends CommandContext, S extends Command
             helpfulNodes.addAll(lastNode.getNodesWithTag("handler", true));
             helpfulNodes.addAll(lastNode.getNodesWithTag("description", true));
 
-            if (lastNode.isCategory()) {
+            if(lastNode.isCategory()) {
                 helpfulNodes.remove(lastNode); // We want help for things AFTER the last node
             }
 
@@ -96,10 +96,10 @@ public abstract class CommandManager<C extends CommandContext, S extends Command
             while (changedSet) {
                 changedSet = false;
                 for (CommandNode node : new HashSet<>(helpfulNodes)) { // For each node (clone the set to avoid concurrent modification)
-                    if (!node.hasTag("handler")) { // Check if it's just a "category"
+                    if(!node.hasTag("handler")) { // Check if it's just a "category"
                         Iterator<CommandNode> iter = helpfulNodes.iterator();
                         while (iter.hasNext()) { // If it is, loop through all the nodes
-                            if (node.hasChild(iter.next())) { // And if they fall in this category
+                            if(node.hasChild(iter.next())) { // And if they fall in this category
                                 iter.remove(); // Remove them from the datautil
                                 changedSet = true;
                             }
@@ -115,14 +115,14 @@ public abstract class CommandManager<C extends CommandContext, S extends Command
 
             Iterator<CommandPath> iter = paths.iterator();
             while (iter.hasNext()) {
-                if (!iter.next().checkPermission(sender)) {
+                if(!iter.next().checkPermission(sender)) {
                     iter.remove();
                 }
             }
 
             Collections.sort(paths);
 
-            if (paths.size() > 0) {
+            if(paths.size() > 0) {
                 sender.info("Showing help for '" + lastNode.getPath() + "':");
             }
 
@@ -137,7 +137,7 @@ public abstract class CommandManager<C extends CommandContext, S extends Command
     public void process(S sender, String commandString) {
         List<String> segments = split(commandString);
 
-        if (segments.size() > 0 && segments.get(segments.size() - 1).equals("?")) {
+        if(segments.size() > 0 && segments.get(segments.size() - 1).equals("?")) {
             segments.remove(segments.size() - 1);
             help(sender, segments);
             return;
@@ -146,11 +146,11 @@ public abstract class CommandManager<C extends CommandContext, S extends Command
         try {
             C context = parseSegments(sender, segments);
 
-            if (!context.getPath().getLastNode().isExecutable()) {
+            if(!context.getPath().getLastNode().isExecutable()) {
                 sender.warning("This is not a complete command.");
                 help(sender, segments);
             } else {
-                if (context.getPath().checkPermission(sender)) {
+                if(context.getPath().checkPermission(sender)) {
                     callHandlerMethod(context.getPath().getLastNode().getHandler(), context);
                 } else {
                     sender.warning("You do not have permission to execute this command.");
@@ -174,13 +174,13 @@ public abstract class CommandManager<C extends CommandContext, S extends Command
         String segment = "";
         for (int i = 0; i < commandString.length(); i++) {
             char c = commandString.charAt(i);
-            if (!escape) {
-                if (c == '\\') {
+            if(!escape) {
+                if(c == '\\') {
                     escape = true;
-                } else if (c == '"') {
+                } else if(c == '"') {
                     inQuotes = !inQuotes;
                 } else {
-                    if (c == ' ' && !inQuotes) {
+                    if(c == ' ' && !inQuotes) {
                         segments.add(segment);
                         segment = "";
                     } else {
@@ -207,7 +207,7 @@ public abstract class CommandManager<C extends CommandContext, S extends Command
     }
 
     private void callHandlerMethod(String handler, C context) throws HandlerException {
-        if (handlerMethods.containsKey(handler)) {
+        if(handlerMethods.containsKey(handler)) {
             for (AbstractMap.Entry<Method, CommandListener> pair : handlerMethods.get(handler)) {
                 Method method = pair.getKey();
                 CommandListener listener = pair.getValue();
@@ -219,17 +219,17 @@ public abstract class CommandManager<C extends CommandContext, S extends Command
                     Arg annotation = null;
 
                     for (Annotation a : method.getParameterAnnotations()[i]) {
-                        if (a instanceof Arg) {
+                        if(a instanceof Arg) {
                             annotation = (Arg) a;
                         }
                     }
 
                     Class parameterType = method.getParameterTypes()[i];
 
-                    if (annotation != null && context.getArguments().exists(annotation.value())) {
+                    if(annotation != null && context.getArguments().exists(annotation.value())) {
                         Object value = context.getArguments().get(annotation.value());
 
-                        if (!valueTypeFitsParameterType(value.getClass(), parameterType)) {
+                        if(!valueTypeFitsParameterType(value.getClass(), parameterType)) {
                             throw new HandlerException("Method argument " + annotation.value() + " should be of type " + value.getClass().getName());
                         }
 
@@ -237,7 +237,7 @@ public abstract class CommandManager<C extends CommandContext, S extends Command
                         continue;
                     }
 
-                    if (CommandContext.class.isAssignableFrom(parameterType)) {
+                    if(CommandContext.class.isAssignableFrom(parameterType)) {
                         arguments[i] = context;
                         continue;
                     }
@@ -273,7 +273,7 @@ public abstract class CommandManager<C extends CommandContext, S extends Command
     private boolean valueTypeFitsParameterType(Class valueType, Class parameterType) {
         boolean fits = false;
 
-        if (parameterType.isAssignableFrom(valueType)) {
+        if(parameterType.isAssignableFrom(valueType)) {
             fits = true;
         }
 
@@ -287,7 +287,7 @@ public abstract class CommandManager<C extends CommandContext, S extends Command
         primitiveTypes.put(Boolean.class, boolean.class);
         primitiveTypes.put(Character.class, char.class);
 
-        if (primitiveTypes.get(valueType) == parameterType) {
+        if(primitiveTypes.get(valueType) == parameterType) {
             fits = true;
         }
 
@@ -299,9 +299,9 @@ public abstract class CommandManager<C extends CommandContext, S extends Command
             Map<String, Boolean> usedArgumentNames = new HashMap<>();
 
             for (CommandNode node : leaf.getPath().getNodeList()) {
-                if (node instanceof Argument) {
+                if(node instanceof Argument) {
                     Argument arg = (Argument) node;
-                    if (usedArgumentNames.containsKey(arg.getName())) {
+                    if(usedArgumentNames.containsKey(arg.getName())) {
                         throw new CommandTreeException("Argument " + arg + " already exists in this path.");
                     } else {
                         usedArgumentNames.put(arg.getName(), true);
@@ -311,8 +311,8 @@ public abstract class CommandManager<C extends CommandContext, S extends Command
         }
 
         for (CommandNode executable : root.getExecutableNodes(true)) {
-            if (executable.isLastExecutable()) { // If it's the last executable in this path
-                if (executable.getLeafNodes().size() > 1) { // and there are branches after this one
+            if(executable.isLastExecutable()) { // If it's the last executable in this path
+                if(executable.getLeafNodes().size() > 1) { // and there are branches after this one
                     throw new CommandTreeException("No branches after last executable node in a path allowed.");
                 }
             }
@@ -322,7 +322,7 @@ public abstract class CommandManager<C extends CommandContext, S extends Command
     private void mapHandlerMethods() throws HandlerException {
         for (CommandListener listener : listeners) {
             for (Method method : listener.getClass().getMethods()) {
-                if (method.getAnnotation(CommandHandler.class) != null) {
+                if(method.getAnnotation(CommandHandler.class) != null) {
                     String executes = method.getAnnotation(CommandHandler.class).value();
                     addHandlerMethod(executes, method, listener);
                 }
@@ -331,7 +331,7 @@ public abstract class CommandManager<C extends CommandContext, S extends Command
     }
 
     private void addHandlerMethod(String handler, Method method, CommandListener listener) {
-        if (!handlerMethods.containsKey(handler)) {
+        if(!handlerMethods.containsKey(handler)) {
             handlerMethods.put(handler, new ArrayList<AbstractMap.Entry<Method, CommandListener>>());
         }
 

@@ -1,13 +1,14 @@
-package wtf.tomxpcvx.itemeventsearch.util;
+package wtf.tomxpcvx.itemeventsearch.domain;
 
-
-import wtf.tomxpcvx.itemeventsearch.Constants;
+import wtf.tomxpcvx.itemeventsearch.util.EffectUtil;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.inventory.ItemStack;
+import wtf.tomxpcvx.itemeventsearch.util.ItemEventSearchUtil;
+import wtf.tomxpcvx.itemeventsearch.util.PluginUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +22,7 @@ public class EventItem implements ConfigurationSerializable {
     private boolean markedRemoval;
 
     public EventItem(ItemStack itemStack) {
-        this.eventItemId = Integer.parseInt(itemStack.getItemMeta().getDisplayName().replace(Constants.eventItemName + "=", ""));
+        this.eventItemId = Integer.parseInt(itemStack.getItemMeta().getDisplayName().replace(ItemEventSearchUtil.eventItemName + "=", ""));
         this.material = itemStack.getType();
         this.itemStack = itemStack;
     }
@@ -75,24 +76,24 @@ public class EventItem implements ConfigurationSerializable {
         this.markedRemoval = markedRemoval;
     }
 
-    public void itemPickupSequenz(ItemEventPlayer iep) {
+    public void itemPickupSequence(ItemEventPlayer iep) {
         Location playerLocation = iep.getPlayer().getLocation();
-        EffectUtil.playEffect(playerLocation, Effect.valueOf(Constants.msg.get("PickupEffect")));
-        iep.getPlayer().playSound(playerLocation, Sound.valueOf(Constants.msg.get("PickupSound")), 10.0F, 1.0F);
+        EffectUtil.playEffect(playerLocation, Effect.valueOf(ItemEventSearchUtil.messages.get("PickupEffect")));
+        iep.getPlayer().playSound(playerLocation, Sound.valueOf(ItemEventSearchUtil.messages.get("PickupSound")), 10.0F, 1.0F);
 
-        String eventItemPickup1 = Constants.replace(Constants.msg.get("EventItemPickUp1"), "@NR", String.valueOf(iep.getLocatedEventItemCount()));
-        String eventItemPickup2 = Constants.replace(Constants.msg.get("EventItemPickUp2"), "@NR", String.valueOf(iep.getLocatedEventItemCount()));
-        eventItemPickup2 = Constants.replace(eventItemPickup2, "@MAX", String.valueOf(Constants.eventItemCount));
+        String eventItemPickup1 = ItemEventSearchUtil.messages.get("EventItemPickUp1")
+            .replace("@NR", String.valueOf(iep.getLocatedEventItemCount()));
+        String eventItemPickup2 = ItemEventSearchUtil.messages.get("EventItemPickUp2")
+            .replace("@NR", String.valueOf(iep.getLocatedEventItemCount()))
+            .replace("@MAX", String.valueOf(ItemEventSearchUtil.eventItemCount));
 
-        iep.getPlayer().sendMessage(Constants.pluginDisplayName + eventItemPickup1);
-        iep.getPlayer().sendMessage(Constants.pluginDisplayName + eventItemPickup2);
+        iep.getPlayer().sendMessage(PluginUtil.pluginDisplayName + eventItemPickup1);
+        iep.getPlayer().sendMessage(PluginUtil.pluginDisplayName + eventItemPickup2);
 
-        if (iep.getLocatedEventItemCount() == Constants.eventItemCount) {
+        if(iep.getLocatedEventItemCount() == ItemEventSearchUtil.eventItemCount) {
             iep.setWin();
         }
     }
-
-
 
     @Override
     public Map<String, Object> serialize() {

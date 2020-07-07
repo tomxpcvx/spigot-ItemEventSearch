@@ -31,10 +31,10 @@ public abstract class RangedNumberType<T extends Number> extends ArgumentType<Nu
     }
 
     public boolean checkRange(double number) throws ArgumentParseException {
-        if (checkMin && number < min)
+        if(checkMin && number < min)
             throw new ArgumentParseException("Value must be greater than " + min);
 
-        if (checkMax && number > max)
+        if(checkMax && number > max)
             throw new ArgumentParseException("Value must be smaller than " + max);
 
         return true;

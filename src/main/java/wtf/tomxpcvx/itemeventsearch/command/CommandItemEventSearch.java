@@ -15,6 +15,7 @@ import wtf.tomxpcvx.itemeventsearch.util.ItemEventSearchUtil;
 import wtf.tomxpcvx.itemeventsearch.util.PluginUtil;
 
 import java.util.List;
+import java.util.UUID;
 
 public class CommandItemEventSearch implements CommandListener {
 
@@ -64,10 +65,10 @@ public class CommandItemEventSearch implements CommandListener {
     public void onWinnersCommand(BukkitCommandContext ctxt) {
         if(ctxt.getSender().isPlayer()) {
             Player player = (Player) ctxt.getSender().getSender();
-            List<String> playerNames = (List<String>) ItemEventSearch.getPlugin().getConfig().getList("ItemEventSearch.Winners");
+            List<String> playerUuids = (List<String>) ItemEventSearch.getPlugin().getConfig().getList("ItemEventSearch.Winners");
             player.sendMessage(PluginUtil.pluginDisplayName + ItemEventSearchUtil.messages.get("CommandWinners"));
-            for(String playerName : playerNames) {
-                player.sendMessage(ItemEventSearchUtil.messages.get("CommandWinnersPrefixPlayerNames") + playerName);
+            for(String playerUuid : playerUuids) {
+                player.sendMessage(ItemEventSearchUtil.messages.get("CommandWinnersPrefixPlayerNames") + Bukkit.getOfflinePlayer(UUID.fromString(playerUuid)).getName());
             }
         }
     }

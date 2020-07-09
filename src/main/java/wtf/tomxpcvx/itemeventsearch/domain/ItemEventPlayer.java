@@ -109,17 +109,16 @@ public class ItemEventPlayer {
         if(pluginUtil.getEconomy() != null) {
             pluginUtil.getEconomy().depositPlayer(this.getPlayer().getName(), ItemEventSearchUtil.prize);
             this.getPlayer().sendMessage(PluginUtil.pluginDisplayName + ItemEventSearchUtil.messages.get("WinMoney").replace("@money", String.valueOf(ItemEventSearchUtil.prize)));
-            this.addItemEventPlayerToWinners();
         } else {
             this.getPlayer().sendMessage(PluginUtil.pluginDisplayName + ItemEventSearchUtil.messages.get("Win"));
-            this.addItemEventPlayerToWinners();
         }
+        this.addItemEventPlayerToWinners();
     }
 
     public void addItemEventPlayerToWinners() {
         List<String> winners = (List<String>) ItemEventSearch.getPlugin().getConfig().get("ItemEventSearch.Winners");
         if(!winners.contains(this.getPlayer().getName())) {
-            winners.add(this.getPlayer().getName());
+            winners.add(this.getPlayer().getUniqueId().toString());
             ItemEventSearch.getPlugin().getConfig().set("ItemEventSearch.Winners", winners);
             ItemEventSearch.getPlugin().saveConfig();
         }

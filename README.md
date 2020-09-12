@@ -1,4 +1,4 @@
-# spigot-ItemEventSearch - ![minecraft](https://img.shields.io/static/v1?label=minecraft&message=1.16.1&color=green) ![Java CI with Maven](https://github.com/tomxpcvx/spigot-ItemEventSearch/workflows/Java%20CI%20with%20Maven/badge.svg?branch=master) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftomxpcvx%2Fspigot-ItemEventSearch.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftomxpcvx%2Fspigot-ItemEventSearch?ref=badge_shield)
+# spigot-ItemEventSearch - ![minecraft](https://img.shields.io/static/v1?label=minecraft&message=1.16.1&color=green) ![Java CI with Maven](https://github.com/tomxpcvx/spigot-ItemEventSearch/workflows/Java%20CI%20with%20Maven/badge.svg?branch=main) [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftomxpcvx%2Fspigot-ItemEventSearch.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftomxpcvx%2Fspigot-ItemEventSearch?ref=badge_shield)
 
 ItemEventSearch is a minecraft plugin that allows server operators to run a small mini-game in the form of an item search. 
 The plugin offers the possibility to start the event in any world on the server.
@@ -41,6 +41,6 @@ If you make any changes or improvements to the plugin, please make a pull reques
 
 ## License
 
-ItemEventSearch was released under GPL3-license until version 1.2.0. On July 06, 2020 the license was changed from GLP3-license to MIT-license. Old versions are hereby retroactively licensed under the MIT-license as well. Please see [`LICENSE`](https://github.com/tomxpcvx/spigot-ItemEventSearch/blob/master/LICENSE) for more info.
+ItemEventSearch was released under GPL3-license until version 1.2.0. On July 06, 2020 the license was changed from GLP3-license to MIT-license. Old versions are hereby retroactively licensed under the MIT-license as well. Please see [`LICENSE`](https://github.com/tomxpcvx/spigot-ItemEventSearch/blob/main/LICENSE) for more info.
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftomxpcvx%2Fspigot-ItemEventSearch.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftomxpcvx%2Fspigot-ItemEventSearch?ref=badge_large)

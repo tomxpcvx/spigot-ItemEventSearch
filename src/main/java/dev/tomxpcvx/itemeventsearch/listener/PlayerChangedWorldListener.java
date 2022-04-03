@@ -1,9 +1,9 @@
-package wtf.tomxpcvx.itemeventsearch.listener;
+package dev.tomxpcvx.itemeventsearch.listener;
 
-import wtf.tomxpcvx.itemeventsearch.ItemEventSearch;
-import wtf.tomxpcvx.itemeventsearch.domain.ItemEventPlayer;
-import wtf.tomxpcvx.itemeventsearch.util.ConfigUtil;
-import wtf.tomxpcvx.itemeventsearch.util.ScoreboardUtil;
+import dev.tomxpcvx.itemeventsearch.util.ConfigUtil;
+import dev.tomxpcvx.itemeventsearch.ItemEventSearch;
+import dev.tomxpcvx.itemeventsearch.domain.ItemEventPlayer;
+import dev.tomxpcvx.itemeventsearch.util.ScoreboardUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;

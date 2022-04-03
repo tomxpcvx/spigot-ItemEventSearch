@@ -1,14 +1,14 @@
-package wtf.tomxpcvx.itemeventsearch.domain;
+package dev.tomxpcvx.itemeventsearch.domain;
 
-import wtf.tomxpcvx.itemeventsearch.util.EffectUtil;
+import dev.tomxpcvx.itemeventsearch.util.EffectUtil;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.inventory.ItemStack;
-import wtf.tomxpcvx.itemeventsearch.util.ItemEventSearchUtil;
-import wtf.tomxpcvx.itemeventsearch.util.PluginUtil;
+import dev.tomxpcvx.itemeventsearch.util.ItemEventSearchUtil;
+import dev.tomxpcvx.itemeventsearch.util.PluginUtil;
 
 import java.util.HashMap;
 import java.util.Map;

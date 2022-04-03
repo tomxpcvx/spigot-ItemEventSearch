@@ -1,8 +1,8 @@
-package wtf.tomxpcvx.itemeventsearch.util;
+package dev.tomxpcvx.itemeventsearch.util;
 
 import org.bukkit.Bukkit;
 import org.bukkit.scoreboard.*;
-import wtf.tomxpcvx.itemeventsearch.domain.ItemEventPlayer;
+import dev.tomxpcvx.itemeventsearch.domain.ItemEventPlayer;
 
 public class ScoreboardUtil {
 

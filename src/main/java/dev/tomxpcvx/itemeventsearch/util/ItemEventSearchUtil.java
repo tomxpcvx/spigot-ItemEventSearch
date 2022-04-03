@@ -1,8 +1,8 @@
-package wtf.tomxpcvx.itemeventsearch.util;
+package dev.tomxpcvx.itemeventsearch.util;
 
+import dev.tomxpcvx.itemeventsearch.domain.EventItem;
+import dev.tomxpcvx.itemeventsearch.domain.ItemEventPlayer;
 import org.bukkit.Material;
-import wtf.tomxpcvx.itemeventsearch.domain.EventItem;
-import wtf.tomxpcvx.itemeventsearch.domain.ItemEventPlayer;
 
 import java.util.ArrayList;
 import java.util.HashMap;

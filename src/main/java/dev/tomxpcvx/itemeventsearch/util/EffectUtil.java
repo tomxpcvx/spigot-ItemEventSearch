@@ -1,4 +1,4 @@
-package wtf.tomxpcvx.itemeventsearch.util;
+package dev.tomxpcvx.itemeventsearch.util;
 
 import org.bukkit.Effect;
 import org.bukkit.Location;

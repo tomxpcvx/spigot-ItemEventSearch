@@ -1,11 +1,11 @@
-package wtf.tomxpcvx.itemeventsearch.util;
+package dev.tomxpcvx.itemeventsearch.util;
 
 import me.rojetto.comfy.argument.BooleanType;
 import me.rojetto.comfy.argument.FloatType;
 import me.rojetto.comfy.bukkit.BukkitCommandManager;
 import me.rojetto.comfy.tree.Argument;
 import me.rojetto.comfy.tree.Literal;
-import wtf.tomxpcvx.itemeventsearch.command.CommandItemEventSearch;
+import dev.tomxpcvx.itemeventsearch.command.CommandItemEventSearch;
 
 public class CommandUtil {
 

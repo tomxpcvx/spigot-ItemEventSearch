@@ -1,6 +1,6 @@
-package wtf.tomxpcvx.itemeventsearch;
+package dev.tomxpcvx.itemeventsearch;
 
-import wtf.tomxpcvx.itemeventsearch.util.*;
+import dev.tomxpcvx.itemeventsearch.util.*;
 import me.rojetto.comfy.bukkit.BukkitCommandManager;
 import org.bukkit.plugin.java.JavaPlugin;
 

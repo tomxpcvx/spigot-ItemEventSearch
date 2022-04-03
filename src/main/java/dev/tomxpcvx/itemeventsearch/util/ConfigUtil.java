@@ -1,12 +1,12 @@
-package wtf.tomxpcvx.itemeventsearch.util;
+package dev.tomxpcvx.itemeventsearch.util;
 
 import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import wtf.tomxpcvx.itemeventsearch.ItemEventSearch;
-import wtf.tomxpcvx.itemeventsearch.domain.EventItem;
-import wtf.tomxpcvx.itemeventsearch.domain.ItemEventPlayer;
+import dev.tomxpcvx.itemeventsearch.ItemEventSearch;
+import dev.tomxpcvx.itemeventsearch.domain.EventItem;
+import dev.tomxpcvx.itemeventsearch.domain.ItemEventPlayer;
 
 import java.io.File;
 import java.io.IOException;

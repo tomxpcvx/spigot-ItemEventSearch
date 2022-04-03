@@ -1,12 +1,12 @@
-package wtf.tomxpcvx.itemeventsearch.listener;
+package dev.tomxpcvx.itemeventsearch.listener;
 
-import wtf.tomxpcvx.itemeventsearch.domain.ItemEventPlayer;
+import dev.tomxpcvx.itemeventsearch.util.ConfigUtil;
+import dev.tomxpcvx.itemeventsearch.domain.ItemEventPlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerKickEvent;
-import wtf.tomxpcvx.itemeventsearch.util.ConfigUtil;
-import wtf.tomxpcvx.itemeventsearch.util.ItemEventSearchUtil;
+import dev.tomxpcvx.itemeventsearch.util.ItemEventSearchUtil;
 
 public class PlayerKickListener implements Listener {
 

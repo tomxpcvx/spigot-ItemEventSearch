@@ -1,8 +1,8 @@
-package wtf.tomxpcvx.itemeventsearch.util;
+package dev.tomxpcvx.itemeventsearch.util;
 
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import wtf.tomxpcvx.itemeventsearch.listener.*;
+import dev.tomxpcvx.itemeventsearch.listener.*;
 
 public class EventUtil {
 

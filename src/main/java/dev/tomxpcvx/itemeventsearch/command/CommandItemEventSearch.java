@@ -1,7 +1,7 @@
-package wtf.tomxpcvx.itemeventsearch.command;
+package dev.tomxpcvx.itemeventsearch.command;
 
-import wtf.tomxpcvx.itemeventsearch.ItemEventSearch;
-import wtf.tomxpcvx.itemeventsearch.domain.ItemEventPlayer;
+import dev.tomxpcvx.itemeventsearch.ItemEventSearch;
+import dev.tomxpcvx.itemeventsearch.domain.ItemEventPlayer;
 import me.rojetto.comfy.CommandListener;
 import me.rojetto.comfy.annotation.Arg;
 import me.rojetto.comfy.annotation.CommandHandler;
@@ -11,8 +11,8 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import wtf.tomxpcvx.itemeventsearch.util.ItemEventSearchUtil;
-import wtf.tomxpcvx.itemeventsearch.util.PluginUtil;
+import dev.tomxpcvx.itemeventsearch.util.ItemEventSearchUtil;
+import dev.tomxpcvx.itemeventsearch.util.PluginUtil;
 
 import java.util.List;
 import java.util.UUID;

@@ -1,11 +1,11 @@
-package wtf.tomxpcvx.itemeventsearch.listener;
+package dev.tomxpcvx.itemeventsearch.listener;
 
-import wtf.tomxpcvx.itemeventsearch.ItemEventSearch;
-import wtf.tomxpcvx.itemeventsearch.domain.EventItem;
-import wtf.tomxpcvx.itemeventsearch.domain.ItemEventPlayer;
-import wtf.tomxpcvx.itemeventsearch.util.ItemEventSearchUtil;
-import wtf.tomxpcvx.itemeventsearch.util.PluginUtil;
-import wtf.tomxpcvx.itemeventsearch.util.ScoreboardUtil;
+import dev.tomxpcvx.itemeventsearch.ItemEventSearch;
+import dev.tomxpcvx.itemeventsearch.domain.EventItem;
+import dev.tomxpcvx.itemeventsearch.domain.ItemEventPlayer;
+import dev.tomxpcvx.itemeventsearch.util.ItemEventSearchUtil;
+import dev.tomxpcvx.itemeventsearch.util.PluginUtil;
+import dev.tomxpcvx.itemeventsearch.util.ScoreboardUtil;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;

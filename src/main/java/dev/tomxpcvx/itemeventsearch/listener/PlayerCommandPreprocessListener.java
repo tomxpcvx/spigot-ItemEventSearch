@@ -1,6 +1,6 @@
-package wtf.tomxpcvx.itemeventsearch.listener;
+package dev.tomxpcvx.itemeventsearch.listener;
 
-import wtf.tomxpcvx.itemeventsearch.ItemEventSearch;
+import dev.tomxpcvx.itemeventsearch.ItemEventSearch;
 import me.rojetto.comfy.bukkit.BukkitCommandManager;
 import me.rojetto.comfy.tree.CommandNode;
 import me.rojetto.comfy.tree.CommandRoot;
@@ -11,7 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.help.HelpTopic;
-import wtf.tomxpcvx.itemeventsearch.util.ItemEventSearchUtil;
+import dev.tomxpcvx.itemeventsearch.util.ItemEventSearchUtil;
 
 /**
  * Created by tarik on 20.02.2017.

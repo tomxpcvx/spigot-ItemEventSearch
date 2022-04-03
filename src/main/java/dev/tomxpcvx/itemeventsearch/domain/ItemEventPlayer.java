@@ -1,10 +1,10 @@
-package wtf.tomxpcvx.itemeventsearch.domain;
+package dev.tomxpcvx.itemeventsearch.domain;
 
-import wtf.tomxpcvx.itemeventsearch.ItemEventSearch;
+import dev.tomxpcvx.itemeventsearch.ItemEventSearch;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Scoreboard;
-import wtf.tomxpcvx.itemeventsearch.util.ItemEventSearchUtil;
-import wtf.tomxpcvx.itemeventsearch.util.PluginUtil;
+import dev.tomxpcvx.itemeventsearch.util.ItemEventSearchUtil;
+import dev.tomxpcvx.itemeventsearch.util.PluginUtil;
 
 import java.util.ArrayList;
 import java.util.List;

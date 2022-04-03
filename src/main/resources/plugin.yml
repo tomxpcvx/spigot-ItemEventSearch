@@ -1,6 +1,6 @@
 name: ItemEventSearch
-version: 1.2.3
+version: 1.2.6
 description: ItemEventSearch
 author: tomxpcvx
 
-main: wtf.tomxpcvx.itemeventsearch.ItemEventSearch
+main: dev.tomxpcvx.itemeventsearch.ItemEventSearch

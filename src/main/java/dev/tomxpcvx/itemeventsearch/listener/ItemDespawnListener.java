@@ -1,9 +1,9 @@
-package wtf.tomxpcvx.itemeventsearch.listener;
+package dev.tomxpcvx.itemeventsearch.listener;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ItemDespawnEvent;
-import wtf.tomxpcvx.itemeventsearch.util.ItemEventSearchUtil;
+import dev.tomxpcvx.itemeventsearch.util.ItemEventSearchUtil;
 
 public class ItemDespawnListener implements Listener {
 
